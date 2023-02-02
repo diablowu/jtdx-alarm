@@ -1,0 +1,210 @@
+DX4WIN.CTY #22.24 - 21 June 2022
+
+Version entity is Republic of Korea, HL
+
+Entities: 402
+Prefixes: 27,475
+Callsigns: 44,899
+Managers: 93,975
+Addresses: 13,221
+
+Entities
+
+
+Prefixes
+
+
+Callsigns
+
+	* 2Q0JVR during June 2022 is Scotland, GM
+	* 5R8BM starting 13 June 2022 is Madagascar, 5R on IOTA AF057
+	* 8A495JS and 8A495JT from 19-24 June 2022 are both Indonesia, YB on IOTA OC021
+	* 8A52BK from 14-16 June 2022 is Indonesia, YB on IOTA OC021
+	* 8C1339PDS from 17-19 June 2022 is Indonesia, YB on IOTA OC143
+	* 9A/HA5AZZ on 27 August 2002 is Croatia, 9A on IOTA EU016
+	* 9A/HA5AZZ and 9A/HA5TAA on 22 July 2004 are both Croatia, 9A on IOTA EU016
+	* 9A/HA5AZZ on 24 July 2004 is Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ on 26 July 2004 is Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ on 27 July 2004 is Croatia, 9A on IOTA EU016
+	  9A/HA5AZZ from 30-31 July 2004 is Croatia, 9A on IOTA EU170
+	* 9A/HA5AZZ and 9A/HA5TAA on 31 December 2004 are both Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ and 9A/HA5TAA on 02 August 2005 are both Croatia, 9A on IOTA EU016
+	  9A/HA5AZZ and 9A/HA5TAA on 18 July 2006 are both Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ and 9A/HA5TAA on 15 September 2006 are both Croatia, 9A on IOTA EU170
+	* 9A/HA5AZZ on 15 July 2007 is Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ from 21-22 July 2007 is Croatia, 9A on IOTA EU170
+	* 9A/HA5AZZ and 9A/HA5TAA on 26 July 2007 are both Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ and 9A/HA5TAA on 27 July 2008 are both Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ and 9A/HA5TAA from 2-8 August 2008 are both Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ and 9A/HA5TAA on 19 April 2009 are both Croatia, 9A on IOTA EU136
+	* 9A/HA5AZZ on 27 July 2009 is Croatia, 9A on IOTA EU170
+	  9A/HA5AZZ from 30-31 July 2009 is Croatia, 9A on IOTA EU170
+	* 9A/HA5AZZ and 9A/HA5TAA on 06 August 2009 are both Croatia, 9A on IOTA EU170
+	* 9A/HA5AZZ on 23 May 2010 is Croatia, 9A on IOTA EU110
+	* 9A/HA5AZZ and 9A/HA5TAA on 05 August 2010 are both Croatia, 9A on IOTA EU170
+	  9A/HA5TAA on 30 July 2004 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA on 31 July 2004 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA from 20-21 July 2006 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA on 22 July 2006 is Croatia, 9A on IOTA EU016
+	  9A/HA5TAA on 25 July 2006 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA on 21 July 2007 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA on 22 July 2007 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA on 27 July 2007 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA from 27-31 July 2009 is Croatia, 9A on IOTA EU170
+	  9A/HA5TAA from 22-23 May 2010 is Croatia, 9A on IOTA EU110
+	  9A/HA5TAA from 1-2 August 2010 is Croatia, 9A on IOTA EU170
+	* A35JP/P from 10-16 July 2022 is Tonga, A3 on IOTA OC191
+	  A35JP/P from 07-20 August 2022 is Tonga, A3 on IOTA OC123
+	* AK4AM/P from 3-9 July 2022 is United States of America, K in CQ Zone 5 on IOTA
+	  NA112
+	* AL6U from 04 October 2020 through 21 August 2021 is United States of America, K
+	  in CQ Zone 3
+	* E51RMP from 18-19 July 2022 is South Cook Islands, E5/S on IOTA OC083
+	* EC5AHA from 18-19 June 2022 is Canary Islands, EA8
+	  EC5AHA starting 20 June 2022 is Spain, EA
+	* EJ6KP from 14-16 June 2022 is Ireland, EI on IOTA EU121
+	* ES8/SQ6NEJ from 10-15 March 2009 is Estonia, ES on IOTA EU178
+	* F6GNP/M from 13-15 June 2022 is France, F on IOTA EU064
+	* G5XV from 30-31 July 2022 is England, G on IOTA EU120
+	* GB100BBC from 12-14 June 2022 is Northern Ireland, GI
+	* GB8PJE from 09 March through 31 December 2022 is Northern Ireland, GI
+	* GM0OGN starting 24 July 2004 is Scotland, GM on IOTA EU010
+	* GM0WED/70 during June 2022 is Scotland, GM on IOTA EU009
+	* HL0C/4 from 14-15 August 1997 is Republic of Korea, HL on IOTA AS026
+	  HL0C/4 from 23-29 December 1997 is Republic of Korea, HL on IOTA AS084
+	  HL0C/4 from 5-9 August 1999 is Republic of Korea, HL on IOTA AS026
+	  HL0C/4 from 3-8 August 2000 is Republic of Korea, HL on IOTA AS085
+	  HL0C/4 from 2-5 August 2001 is Republic of Korea, HL on IOTA AS148
+	  HL0C/4 from 23-25 June 2004 is Republic of Korea, HL on IOTA AS026
+	  HL0C/4 from 24-27 July 2009 is Republic of Korea, HL on IOTA AS148
+	* HL0CBD/4 on 15 August 1997 is Republic of Korea, HL on IOTA AS060
+	  HL0CBD/4 from 22-24 August 1999 is Republic of Korea, HL on IOTA AS060
+	  HL0CBD/4 from 14-16 August 2000 is Republic of Korea, HL
+	  HL0CBD/4 from 09-11 August 2002 is Republic of Korea, HL on IOTA AS060
+	  HL0CBD/4 from 7-8 August 2003 is Republic of Korea, HL on IOTA AS060
+	* HL0DOK starting 15 October 2012 is Republic of Korea, HL on IOTA AS045
+	* HS0ZJF/8 from 07-23 October 2012 is Thailand, HS on IOTA AS101 (change)
+	  HS0ZJF/8 from 21 January through 18 February 2013 is Thailand, HS on IOTA AS101
+	* HS0ZJF/9 from 07-13 February 2012 is Thailand, HS on IOTA AS126 (change)
+	* HS8AB starting 20 April 2011 is Thailand, HS on IOTA AS053
+	* IZ5AQX starting 03 October 1996 is Italy, I on IOTA EU028
+	* JA1BVY/8 on 09 July 2013 is Japan, JA on IOTA AS147
+	* JA4GXS/4 on 30 July 2005 is Japan, JA on IOTA AS117
+	  JA4GXS/4 on 24 December 2005 is Japan, JA on IOTA AS117
+	  JA4GXS/4 on 17 March 2007 is Japan, JA on IOTA AS117
+	  JA4GXS/4 on 21 August 2010 is Japan, JA on IOTA AS117
+	  JA4GXS/4 on 13 October 2012 is Japan, JA on IOTA AS117
+	* JA4GXS/5 from 23-24 April 2017 is Japan, JA on IOTA AS200
+	* JA5MOO/P on 30 March 2014 is Japan, JA on IOTA AS023
+	* JA6UFF/6 on 25 November 2017 is Japan, JA on IOTA AS036
+	* JE1HXZ/6 and JR1LZK/6 on 01 May 2016 are both Japan, JA on IOTA AS024
+	* JE6NSK/6 on 08 November 2015 is Japan, JA on IOTA AS024
+	  JE6NSK/6 on 02 December 2015 is Japan, JA on IOTA AS024
+	* JE6TSP starting 24 August 2018 is Japan, JA on IOTA AS023 (change)
+	* JF3ELH/6 on 13 May 2011 is Japan, JA on IOTA AS032
+	  JF3ELH/6 on 20 March 2012 is Japan, JA on IOTA AS017
+	  JF3ELH/6 on 28 April 2016 is Japan, JA on IOTA AS017
+	  JF3ELH/6 from 23 February 2017 through 23 June 2019 is Japan, JA on IOTA AS017
+	* JG3JLC/6 on 23 September 2010 is Japan, JA on IOTA AS023
+	* JI3DST/4 on 19 June 2017 is Japan, JA on IOTA AS041
+	* JI3DST/6 on 31 March 2001 is Japan, JA on IOTA AS012
+	* JI5RPT/1 on 20 May 2017 is Japan, JA on IOTA AS008
+	* JJ1JGI/6 on 20 July 2013 is Japan, JA on IOTA AS079
+	  JJ1JGI/6 from 1-3 January 2016 is Japan, JA on IOTA AS079
+	* JJ8DEN/6 on 21 June 2003 is Japan, JA on IOTA AS023
+	  JJ8DEN/6 on 18 January 2004 is Japan, JA on IOTA AS017
+	  JJ8DEN/6 from 17 December 2006 through 19 November 2009 is Japan, JA on IOTA
+	  AS017 (change)
+	* JN4JGK/5 on 30 July 2016 is Japan, JA on IOTA AS200
+	* JO2ASQ/8 on 01 May 2013 is Japan, JA on IOTA AS078
+	* JQ1SUO/0 on 13 September 2003 is Japan, JA on IOTA AS117
+	* JQ6XXA from 11-14 January 2003 is Japan, JA on IOTA AS032
+	  JQ6XXA on 14 July 2012 is Japan, JA on IOTA AS032
+	  JQ6XXA from 9-8 March 2014 is Japan, JA on IOTA AS032
+	  JQ6XXA on 16 March 2014 is Japan, JA on IOTA AS032
+	* JR1LZK/6 on 02 May 2015 is Japan, JA on IOTA AS017
+	* JR4PMX/6 on 08 July 2012 is Japan, JA on IOTA AS024
+	* K7K from 23 July through 01 August 2022 is Alaska, KL7 on IOTA NA070
+	* MQ6IUT during June 2022 is Wales, GW
+	* NH6J from 08-30 June 2022 is United States of America, K
+	* NH6J/1 starting 01 May 1985 is United States of America, K in CQ Zone 5
+	* NH6J/4 starting 01 May 1995 is United States of America, K in CQ Zone 5
+	* NH6J/6 starting 01 March 2008 is United States of America, K in CQ Zone 3
+	* OH/DL6BBT/M on 14 June 2022 is Finland, OH on IOTA EU173
+	* OZ/DL9LBR from 18-24 June 2022 is Denmark, OZ on IOTA EU172
+	  OZ/DL9LBR from 26 June through 02 July 2022 is Denmark, OZ on IOTA EU125
+	* OZ6ABL starting 11 May 2011 is Denmark, OZ on IOTA EU029
+	* PU5OGE starting 12 October 2007 is Brazil, PY on IOTA SA026
+	* R0WAS/1/P starting 18 June 2022 is European Russia, UA
+	* R752MAK from 16 June through 15 September 2022 is European Russia, UA
+	* R90SOK from 20 June through 19 July 2022 is European Russia, UA
+	* R9HAF/M from 14-16 June 2022 is Kaliningrad, UA2
+	* R9LAR/1/M starting 20 June 2022 is European Russia, UA
+	* R9LM/6 starting 15 June 2022 is European Russia, UA
+	* RI1KO from 27 July through 03 August 2022 is European Russia, UA on IOTA EU147
+	* SM3/IK3GES on 04 July 2008 is Sweden, SM on IOTA EU087
+	* SP0DF from 24 July through 01 August 2019 is Poland, SP on IOTA EU132 (change)
+	* SV8/OE5CFH from 14-21 June 2022 is Greece, SV on IOTA EU052
+	* TA3J/0 from 17-18 June 2022 is Turkey, TA on IOTA AS099
+	* TF/M0BLF on 09 August 2008 is Iceland, TF on IOTA EU071
+	* UA1ATD/P on 18 June 2022 is European Russia, UA on IOTA EU133
+	* VK5KI from 30-31 July 2022 is Australia, VK on IOTA OC139
+	* VX2I from 28-31 July 2022 is Canada, VE on IOTA NA128
+	* W4D from 29-31 October 1999 is United States of America, K in CQ Zone 5 on IOTA
+	  NA142
+	  W4D from 23-25 February 2001 is United States of America, K in CQ Zone 5 on IOTA
+	  NA213
+	  W4D from 08-11 March 2002 is United States of America, K in CQ Zone 5 on IOTA
+	  NA213
+	  W4D from 25-27 September 2004 is United States of America, K in CQ Zone 5 on
+	  IOTA NA213
+	* W4EG starting 27 July 2015 is United States of America, K in CQ Zone 5 on IOTA
+	  NA138 (change)
+	* W4KJ from 28-29 July 2018 is United States of America, K in CQ Zone 5 on IOTA
+	  NA055
+	* W4MY on 24 July 2010 is United States of America, K in CQ Zone 5 on IOTA NA112
+	  W4MY from 30-31 July 2016 is United States of America, K in CQ Zone 5 on IOTA
+	  NA067
+	  W4MY from 26-28 July 2019 is United States of America, K in CQ Zone 5 on IOTA
+	  NA067 (change)
+	* WA2USA/4 from 05-28 February 2012 is United States of America, K in CQ Zone 5 on
+	  IOTA NA085 (change)
+	* WA5DTK on 16 January 2016 is United States of America, K on IOTA NA092
+	* WB8YJF from 28-30 July 2000 is United States of America, K in CQ Zone 5 on IOTA
+	  NA062
+	* XU7TAS from 16-19 December 2005 is Cambodia, XU on IOTA AS133 (change)
+	* YB8DEV/P, YC8DEL/P, YC8GZO/P, YD8BUL/P and YD8EQY/P from 24-29 June 2022 are all
+	  Indonesia, YB on IOTA OC247
+	* YB8ZC from 16-18 December 2005 is Indonesia, YB on IOTA OC236
+	* YB9ZGD starting 29 January 2019 is Indonesia, YB on IOTA OC150
+	* YD8IKU starting 05 January 2021 is Indonesia, YB on IOTA OC236
+	* YD8IKY starting 04 December 2021 is Indonesia, YB on IOTA OC236
+	* YE8IT from 24-26 September 1988 is Indonesia, YB on IOTA OC236
+	* YE8RP starting 05 January 2022 is Indonesia, YB on IOTA OC146
+	* ZL1GWE starting 11 May 2005 is New Zealand, ZL on IOTA OC201
+
+QSL Managers (changes only, new stations with new managers are NOT listed)
+
+	* 4M7A is via YW7A, not YV7QP
+	* BX0QSL starting 10 June 2022 is via BM2JCC
+	* EG9IA starting 20 July 2002 is via EA7RU
+	* GQ4FOC is via G3SWH, not GW4OKT
+	* HG200OT is via HA8RD, not LOTW/OQRS
+	* HI3B is direct only, not via EB7DX
+	* HI3MPC is via EB7DX, not W2CCW
+	* II8RM starting 03 June 2022 is via IQ8BB
+	* LT6M is via EC6DX, not LU8MHL
+	* TI5N is direct only, not via M0URX
+	* TM8A starting 28 March 2014 is via F8DVD
+	* V31TG starting 01 April 2022 is via M0URX
+	* VG3MBT is via VA3MBT, not VE3NOO
+	* VX2I starting 28 July 2022 is via LOTW
+	* YW7A is direct only, not via YV7QP
+	* ZC4RH starting 05 June 2022 is via DK6SP
+
+----------------------------------------------------------------------
+
+You can find these release notes on-line at the following URL:
+
+    https://www.country-files.com/dx4win-cty-22-24-21-june-2022/
+
