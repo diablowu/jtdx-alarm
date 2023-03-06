@@ -1,8 +1,8 @@
 package notify
 
 import (
+	log "github.com/sirupsen/logrus"
 	"jtdx-alarm/pkg/city"
-	"log"
 )
 
 type Notifier interface {
@@ -15,7 +15,7 @@ type LogPrintNotifier struct {
 }
 
 func (n LogPrintNotifier) Notify(de string, entry *city.DXCCEntry, msg string) {
-	log.Printf(msg)
+	log.Infoln(msg)
 }
 
 func init() {

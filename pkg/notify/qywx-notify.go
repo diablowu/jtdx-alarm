@@ -1,9 +1,9 @@
 package notify
 
 import (
+	log "github.com/sirupsen/logrus"
 	"jtdx-alarm/pkg/city"
 	"jtdx-alarm/pkg/qywx"
-	"log"
 	"strings"
 	"time"
 )
@@ -42,7 +42,7 @@ func (n *QYWXMessageNotifier) startSendTask() {
 	for {
 
 		<-ticker.C
-		log.Printf("Message queue: len(%d), cap(%d)", len(n.messageQueue), cap(n.messageQueue))
+		log.Infof("Message queue: len(%d), cap(%d)", len(n.messageQueue), cap(n.messageQueue))
 		var contents []string
 
 		for i := 0; i < 25; i++ {
@@ -62,7 +62,7 @@ func (n *QYWXMessageNotifier) startSendTask() {
 				qywx.SendAgentMessage("Found DXCC\n\n" + strings.Join(contents, "\n"))
 			}
 		} else {
-			log.Printf("Following message was sent via qywx: %v", contents)
+			log.Infof("Following message was sent via qywx: %v", contents)
 		}
 
 	}
@@ -76,13 +76,13 @@ func (n *QYWXMessageNotifier) Notify(de string, entry *city.DXCCEntry, msg strin
 		interval := now - lastTS
 		if interval >= sendIntervalInSecond {
 			canBeEnQueue = true
-			log.Printf("Call[%s] was be enqueue , interval :%d", de, interval)
+			log.Infof("Call[%s] was be enqueue , interval :%d", de, interval)
 		} else {
-			log.Printf("Call[%s] was be blocked , interval :%d", de, interval)
+			log.Infof("Call[%s] was be blocked , interval :%d", de, interval)
 		}
 	} else {
 		canBeEnQueue = true
-		log.Printf("Call[%s] was be enqueue , not found in cache", de)
+		log.Infof("Call[%s] was be enqueue , not found in cache", de)
 	}
 
 	if canBeEnQueue {

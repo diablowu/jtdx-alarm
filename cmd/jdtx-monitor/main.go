@@ -2,13 +2,15 @@ package main
 
 import (
 	"flag"
-	wsjtx "jtdx-alarm"
+	log "github.com/sirupsen/logrus"
 	"jtdx-alarm/pkg/adif"
 	"jtdx-alarm/pkg/city"
-	"jtdx-alarm/pkg/monitor"
+	"jtdx-alarm/pkg/monitor/decode"
 	"jtdx-alarm/pkg/osx"
 	"jtdx-alarm/pkg/qywx"
-	"log"
+	"jtdx-alarm/pkg/wsjtx"
+	"net"
+	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
@@ -16,105 +18,123 @@ import (
 )
 
 var (
-	bindAddr       = flag.String("bind-addr", "239.255.0.0", "Bind address or Multicast address")
-	bindPort       = flag.Uint("bind-port", 2237, "Bind port")
-	ctyPath        = flag.String("cty-path", "cty.dat", "CTY file")
-	verbose        = flag.Bool("verbose", false, "Verbose mode")
-	targetCallSign = flag.String("target-call", "N0CALL", "Callsign of received message")
-	filteredDXCC   = flag.String("filtered-dxcc", "BY,JA,HL,BV,YB,UA,UA9", "Filtered DXCC")
-	notifiers      = flag.String("notifiers", "log,wx", "Notifier list")
-	jtdxLogDir     = flag.String("jtdx-log-dir", filepath.Join(osx.MustUserHomeDir(), "AppData", "Local", "JTDX"), "JTDX logger path")
-	useADIFFilter  = flag.Bool("use-adif-filter", true, "Use adif")
+	bindAddr       = flag.String("bind-addr", "239.255.0.0", "接收JTDX UDP消息的地址，可以是组播地址或者本地地址")
+	bindPort       = flag.Uint("bind-port", 2237, "接收JTDX UDP消息的端口")
+	ctyPath        = flag.String("cty-path", "cty.dat", "Big CTY文件地址")
+	targetCallSign = flag.String("target-call", "N0CALL", "接收消息的CALL")
+	filteredDXCC   = flag.String("filtered-dxcc", "BY,JA,HL,BV,YB,UA,UA9", "被过滤掉的DXCC")
+	notifiers      = flag.String("notifiers", "log,wx", "启用的通知器")
+	jtdxLogDir     = flag.String("jtdx-log-dir", filepath.Join(osx.MustUserHomeDir(), "AppData", "Local", "JTDX"), "JTDX日志目录，一般不用修改。如果你有多个JTDX安装目录，需要配置此选项。")
+	useJTDXLog     = flag.Bool("use-jtdx-log", true, "是否使用JTDX的日志过滤，如果启用，将会定时读取JTDX下的日志文件，仅仅针对没有记录的DXCC进行通知")
+	logLevel       = flag.String("log-level", "info", "日志输出级别:panic,fatal,error,warn,info,debug,trace")
+	verbose        = flag.Bool("verbose", false, "是否输出详细日志")
 )
 
 var (
 	DefaultAgentID             = 1000002
 	DefaultADIFLogFileName     = "wsjtx_log.adi"
-	DefaultADIFRefreshInterval = time.Second * 5
+	DefaultADIFRefreshInterval = time.Minute * 5
 )
 
-var defaultDecodeMessageMonitors *monitor.DecodeMessageMonitors
+var defaultDecodeMesageMonitor *decode.DecodeMessageMonitors
 
 // Simple driver binary for wsjtx-go library.
 func main() {
-	initCliFlags()
 
-	qywx.Setup(DefaultAgentID, strings.ToLower(*targetCallSign))
+	flag.Parse()
+
+	initLog()
+	initQYWX()
 	initBigCTY()
 
-	if *useADIFFilter {
+	log.Infof("Using JTDX log: %v", *useJTDXLog)
+	if *useJTDXLog {
 		adif.InitLoggerChecker(filepath.Join(*jtdxLogDir, DefaultADIFLogFileName), DefaultADIFRefreshInterval)
-	}
-
-	log.Println("Listening for JTDX...")
-	incomingMessageChannel := make(chan interface{}, 5)
-
-	var finalFilter monitor.MessageFilter
-	if *useADIFFilter {
-		finalFilter = monitor.NewCompositeFilter(monitor.NewDXCCFilter(strings.Split(*filteredDXCC, ",")), monitor.NewADIFFilter())
 	} else {
-		finalFilter = monitor.NewDXCCFilter(strings.Split(*filteredDXCC, ","))
+		log.Infoln("JTDX logger checker was disabled.")
 	}
 
-	defaultDecodeMessageMonitors = monitor.CreateDecodeMessageMonitors(
-		monitor.NewDefaultMonitor(finalFilter, strings.Split(*notifiers, ",")))
+	log.Infof("Use address %v:%d to receive wsjtx message", *bindAddr, *bindPort)
 
-	wsjtxServer, err := wsjtx.MakeServer(*bindAddr, *bindPort)
+	defaultDecodeMesageMonitor = initDecodeMessageMonitors()
+	wsjtxServer, err := wsjtx.MakeServerGiven(net.ParseIP(*bindAddr), *bindPort)
 	if err != nil {
-		log.Fatalf("%v", err)
+		log.Fatalf("Failed to create udp notify server, %v", err)
 	}
 
+	incomingMessageChannel := make(chan interface{}, 5)
 	errChannel := make(chan error, 5)
-	go wsjtxServer.ListenToWsjtx(incomingMessageChannel, errChannel)
+
+	go wsjtxServer.Listen(incomingMessageChannel, errChannel)
 
 	for {
 		select {
 		case err := <-errChannel:
 			log.Printf("error: %v", err)
 		case message := <-incomingMessageChannel:
-			handleServerMessage(message)
+			HandleServerMessage(message)
 		}
 	}
+
+}
+
+func initDecodeMessageMonitors() *decode.DecodeMessageMonitors {
+	var finalFilter decode.CallSignFilter
+	if *useJTDXLog {
+		finalFilter = decode.NewCompositeFilter(decode.NewBlacklistDXCCCallSignFilter(strings.Split(*filteredDXCC, ",")), decode.NewADIFFilter())
+	} else {
+		finalFilter = decode.NewBlacklistDXCCCallSignFilter(strings.Split(*filteredDXCC, ","))
+	}
+
+	return decode.CreateDecodeMessageMonitors(
+		decode.NewDefaultMonitor(finalFilter, strings.Split(*notifiers, ",")))
+}
+
+func initQYWX() {
+	qywx.Setup(DefaultAgentID, strings.ToLower(*targetCallSign))
 }
 
 func initBigCTY() {
 	if err := city.LoadFromCTYData(*ctyPath); err != nil {
-		log.Fatalf("%v", err)
+		log.Fatalf("Failed to load cty file %v", err)
 	} else {
-		log.Println("Success to load cty data")
+		log.Infoln("Success to load cty data")
 	}
 }
 
-func initCliFlags() {
-	flag.Parse()
+func initLog() {
 
-	if *verbose {
-		log.SetFlags(log.Ldate | log.Ltime | log.Llongfile)
+	log.SetFormatter(&log.TextFormatter{})
+	log.SetOutput(os.Stdout)
+	log.SetReportCaller(*verbose)
+	if lvl, err := log.ParseLevel(*logLevel); err == nil {
+		log.SetLevel(lvl)
 	} else {
-		log.SetFlags(log.Ldate | log.Ltime)
+		log.SetLevel(log.InfoLevel)
 	}
 }
 
-// When we receive WSJT-X messages, display them.
-func handleServerMessage(message interface{}) {
+func HandleServerMessage(message interface{}) {
 	switch message.(type) {
 	case wsjtx.HeartbeatMessage:
-		log.Println("Heartbeat:", message)
+		id := message.(wsjtx.HeartbeatMessage).Id
+		log.Debugf("Heartbeat(%s): %v", id, message)
+		//s.targetName = &id
 	case wsjtx.StatusMessage:
-		log.Println("Other:", reflect.TypeOf(message), message)
+		log.Debugf("Status: %s %v", reflect.TypeOf(message), message)
 	case wsjtx.DecodeMessage:
-		defaultDecodeMessageMonitors.Do(message.(wsjtx.DecodeMessage))
+		defaultDecodeMesageMonitor.Do(message.(wsjtx.DecodeMessage))
 	case wsjtx.ClearMessage:
-		log.Println("Clear:", message)
+		log.Debugf("Clear: %v", message)
 	case wsjtx.QsoLoggedMessage:
-		log.Println("QSO Logged:", message)
+		log.Debugf("QSO Logged: %v", message)
 	case wsjtx.CloseMessage:
-		log.Println("Close:", message)
+		log.Debugf("Close: %v", message)
 	case wsjtx.WSPRDecodeMessage:
-		log.Println("WSPR Decode:", message)
+		log.Debugf("WSPR Decode: %v", message)
 	case wsjtx.LoggedAdifMessage:
-		log.Println("Logged Adif:", message)
+		log.Debugf("Logged Adif: %v", message)
 	default:
-		log.Println("Other:", reflect.TypeOf(message), message)
+		log.Debugf("Other: %s %v", reflect.TypeOf(message), message)
 	}
 }

@@ -2,8 +2,8 @@ package adif
 
 import (
 	goadiflog "github.com/Eminlin/GoADIFLog"
+	log "github.com/sirupsen/logrus"
 	"jtdx-alarm/pkg/city"
-	"log"
 	"time"
 )
 
@@ -42,7 +42,7 @@ func InitLoggerChecker(adifPath string, refreshInterval time.Duration) {
 			case <-refreshTicker.C:
 				{
 					if cache, err := loadADIF(adifPath); err != nil {
-						log.Printf("Failed to read adif, %s", err)
+						log.Warnf("Failed to read adif, %s", err)
 					} else {
 						defaultADIFCache = cache
 					}
@@ -60,12 +60,11 @@ func loadADIF(adifPath string) (*ADIFCache, error) {
 		cache := ADIFCache{}
 		for _, one := range logContent {
 			dxcc := city.FindDXCC(one.Call)
-			//log.Printf("call:%s, dxcc:%s", one.Call, dxcc.DXCCName)
 			cache.addDXCC(dxcc.DXCCName)
 		}
 
-		log.Printf("ADIF loaded. DXCC count: %d", len(cache))
-		log.Printf("ADIF loaded. DXCC list: %v", cache)
+		log.Infof("ADIF loaded. DXCC count: %d", len(cache))
+		log.Infof("ADIF loaded. DXCC list: %v", cache)
 
 		return &cache, nil
 	}

@@ -3,8 +3,8 @@ package qywx
 import (
 	"bytes"
 	"encoding/json"
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"time"
 )
@@ -42,7 +42,7 @@ func SendAgentMessage(message string) {
 			bs, _ := ioutil.ReadAll(resp.Body)
 			log.Println(string(bs))
 		} else {
-			log.Printf("Failed to send agent message, %s", err)
+			log.Warnf("Failed to send agent message, %s", err)
 		}
 
 	}

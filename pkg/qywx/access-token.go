@@ -1,8 +1,8 @@
 package qywx
 
 import (
+	log "github.com/sirupsen/logrus"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -40,13 +40,13 @@ func FreshTokenTask(interval time.Duration) {
 
 	ticker := time.NewTicker(interval)
 	freshAccessToken()
-	log.Println("Success to fresh access token")
+	log.Infoln("Success to fresh access token")
 	go func() {
 		for {
 			<-ticker.C
-			log.Println("Begin to refresh access token")
+			log.Debugln("Begin to refresh access token")
 			freshAccessToken()
-			log.Printf("New access token is %s", *accessToken)
+			log.Debugln("New access token is %s", *accessToken)
 		}
 	}()
 }
