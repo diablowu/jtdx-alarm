@@ -1,23 +1,10 @@
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/k0swe/wsjtx-go/v4)](https://pkg.go.dev/github.com/k0swe/wsjtx-go/v4)
-[![Go Report Card](https://goreportcard.com/badge/github.com/k0swe/wsjtx-go/v4)](https://goreportcard.com/report/github.com/k0swe/wsjtx-go/v4)
-[![Test](https://github.com/k0swe/wsjtx-go/workflows/Test/badge.svg?branch=v3)](https://github.com/k0swe/wsjtx-go/actions/workflows/test.yml?query=branch%3Av3)
+# Intro
+感谢https://github.com/k0swe/wsjtx-go 提供的代码，本项目是基于此项目的修改，通过企业微信的方式接收新的DXCC的通知。
 
-# wsjtx-go
-
-Golang binding for the WSJT-X amateur radio software's UDP communication interface. This library
-supports receiving and sending all WSJT-X message types up through WSJT-X v2.5.2.
-
-This is meant to be a fairly thin binding API, so familiarity with WSJT-X's
-[`NetworkMessage.hpp`](https://sourceforge.net/p/wsjt/wsjtx/ci/wsjtx-2.5.2/tree/Network/NetworkMessage.hpp)
-is recommended.
-
-## Run
-
-This repository is designed as a library but includes a simple driver program to document basic
-integration. WSJT-X must be running and generating UDP packets for the driver to pick them up.
-
-From this directory:
-
-```shell script
-go run cmd/main.go
-```
+# How To
+## 申请加入企业微信
+1. 发邮件给我(bi1niz at hotmail.com)，提供你的呼号，我会把你加入到一个名为"Ham-Radio"的企业微信的"企业"里，然后你就可以收到通知了。为什么使用企业微信，因为它可以直接推送消息又可以集成到个人微信里。
+2. 使用微信扫描以下二维码，加入到企业微信的"企业"里，然后你就可以收到通知了。
+![二维码](./genqrcode.png)
+3. 等待我确认你的呼号，然后你就可以在你的微信里看到一个名为”Ham-Radio“的企业号：
+![企业号](./wx-qy.jpg)
