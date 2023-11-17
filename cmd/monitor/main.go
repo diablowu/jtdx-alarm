@@ -2,14 +2,12 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	log "github.com/sirupsen/logrus"
 	"jtdx-alarm/pkg/adif"
 	"jtdx-alarm/pkg/city"
 	"jtdx-alarm/pkg/monitor/decode"
 	"jtdx-alarm/pkg/osx"
 	"jtdx-alarm/pkg/qywx"
-	"jtdx-alarm/pkg/qywx/join"
 	"jtdx-alarm/pkg/wsjtx"
 	"net"
 	"os"
@@ -29,13 +27,15 @@ var (
 	jtdxLogDir     = flag.String("jtdx-log-dir", filepath.Join(osx.MustUserHomeDir(), "AppData", "Local", "JTDX"), "JTDX日志目录，一般不用修改。如果你有多个JTDX安装目录，需要配置此选项。")
 	useJTDXLog     = flag.Bool("use-jtdx-log", true, "是否使用JTDX的日志过滤，如果启用，将会定时读取JTDX下的日志文件，仅仅针对没有记录的DXCC进行通知")
 	logLevel       = flag.String("log-level", "info", "日志输出级别:panic,fatal,error,warn,info,debug,trace")
-	verbose        = flag.Bool("verbose", false, "是否输出详细日志")
 
-	joinQYWXHelp = flag.Bool("join-help", false, "加入企业微信")
+	qywxAgentID = flag.Int("qywx-agent-id", 1000002, "企业微信应用ID")
+	qywxCorpId  = flag.String("qywx-corp-id", "wx861828161a3f015c", "企业微信企业ID")
+	qywxSecret  = flag.String("qywx-secret", "q7EFHBUKk-S1pNBWD0pDXuYjDzahLZ2VaxQ7QfBrYeU", "企业微信应用密钥")
+
+	verbose = flag.Bool("verbose", false, "是否输出详细日志")
 )
 
 var (
-	DefaultAgentID             = 1000002
 	DefaultADIFLogFileName     = "wsjtx_log.adi"
 	DefaultADIFRefreshInterval = time.Minute * 5
 )
@@ -46,12 +46,6 @@ var defaultDecodeMesageMonitor *decode.DecodeMessageMonitors
 func main() {
 
 	flag.Parse()
-
-	if *joinQYWXHelp {
-		printJoinQYWXHelp()
-		os.Exit(0)
-		return
-	}
 
 	initLog()
 	initQYWX()
@@ -88,23 +82,6 @@ func main() {
 
 }
 
-func printJoinQYWXHelp() {
-	fmt.Println(`请直接使用微信扫描以下二维码，加入名为"Ham-Radio"的企业，这样才能收到企业微信推送的消息。
-如果不能正常显示二维码或者二维码扫描失败，请手动复制以下地址到微信中打开:
-
-https://work.weixin.qq.com/join/8vQWZrGHGag4eePkTEN04A/hb_share_mng_contacts
-
-关于为什么使用企业微信的说明：
-1. 个人微信的没有自由的消息推送方式。
-2. 如果通过公众号方式，需要关注公众号，而且公众号的消息推送是有限制的。
-`)
-	fmt.Println()
-
-	content := "https://work.weixin.qq.com/join/8vQWZrGHGag4eePkTEN04A/hb_share_mng_contacts"
-	obj := join.New()
-	obj.Get([]byte(content)).Print()
-}
-
 func initDecodeMessageMonitors() *decode.DecodeMessageMonitors {
 	var finalFilter decode.CallSignFilter
 	if *useJTDXLog {
@@ -118,10 +95,12 @@ func initDecodeMessageMonitors() *decode.DecodeMessageMonitors {
 }
 
 func initQYWX() {
-	qywx.Setup(DefaultAgentID, strings.ToLower(*targetCallSign))
+	log.Infoln("Init qywx...")
+	qywx.Setup(*qywxAgentID, *qywxCorpId, *qywxSecret, strings.ToLower(*targetCallSign))
 }
 
 func initBigCTY() {
+	log.Infoln("Init bigcty...")
 	if err := city.LoadFromCTYData(*ctyPath); err != nil {
 		log.Fatalf("Failed to load cty file %v", err)
 	} else {

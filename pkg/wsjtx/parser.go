@@ -20,6 +20,35 @@ type parser struct {
 var ParseError = errors.New("parse error")
 var notEnoughBytes = fmt.Errorf("%w: fewer bytes than expected, maybe an older version of WSJTX", ParseError)
 
+//func parseMsg0[T HeartbeatMessage | StatusMessage]() *T {
+//
+//	return StatusMessage{
+//		Id:                   "",
+//		DialFrequency:        0,
+//		Mode:                 "",
+//		DxCall:               "",
+//		Report:               "",
+//		TxMode:               "",
+//		TxEnabled:            false,
+//		Transmitting:         false,
+//		Decoding:             false,
+//		RxDF:                 0,
+//		TxDF:                 0,
+//		DeCall:               "",
+//		DeGrid:               "",
+//		DxGrid:               "",
+//		TxWatchdog:           false,
+//		SubMode:              "",
+//		FastMode:             false,
+//		TxFirst:              false,
+//		SpecialOperationMode: 0,
+//		FrequencyTolerance:   0,
+//		TRPeriod:             0,
+//		ConfigurationName:    "",
+//		TxMessage:            "",
+//	}
+//}
+
 // Parse messages following the interface laid out in
 // https://sourceforge.net/p/wsjt/wsjtx/ci/master/tree/Network/NetworkMessage.hpp. This only parses
 // "Out" or "In/Out" message types and does not include "In" types because they will never be

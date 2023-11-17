@@ -16,10 +16,10 @@ type Service struct {
 var targetCallSign string
 var agentID int
 
-func Setup(agent int, call string) {
+func Setup(agent int, corpID, secret, call string) {
 	targetCallSign = call
 	agentID = agent
-	FreshTokenTask(time.Minute * 15)
+	FreshTokenTask(agent, corpID, secret, time.Minute*15)
 }
 
 func SendAgentMessage(message string) {
