@@ -13,13 +13,17 @@ const (
 	TokenFileURL = "http://js.tkpdevops.com/k.txt"
 )
 
-func freshAccessToken(agent int, corpID, secret string) {
+func freshAccessToken(agent int, corpID, secret string) (error, *string) {
 	log.Infoln("Begin to refresh access token via remote mode")
 	resp, err := http.Get(TokenFileURL)
 	if err == nil {
 		if bs, err := io.ReadAll(resp.Body); err == nil {
-			tokenString := strings.TrimSpace(string(bs))
-			accessToken = &tokenString
+			token := strings.TrimSpace(string(bs))
+			return nil, &token
+		} else {
+			return err, nil
 		}
+	} else {
+		return err, nil
 	}
 }

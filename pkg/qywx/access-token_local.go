@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-func freshAccessToken(agent int, corpID, secret string) {
+func freshAccessToken(agent int, corpID, secret string) (error, *string) {
 	log.Infoln("Begin to refresh access token via local mode directly")
 	qywxAccessTokenAPI := fmt.Sprintf("%s/cgi-bin/gettoken?corpid=%s&corpsecret=%s",
 		QYAPIEndpoint,
